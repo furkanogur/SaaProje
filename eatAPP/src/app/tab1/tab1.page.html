@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Ana Sayfa
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,17 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card *ngFor="let u of uye">
+    <ion-card-header>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Card Title</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{u.uyeAdSoyad}}
+    </ion-card-content>
+  </ion-card>
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

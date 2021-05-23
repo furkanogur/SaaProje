@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Favori } from '../models/Favori';
+import { Uye } from '../models/Uye';
+import { Yemekler } from '../models/yemekler';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +10,17 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  uye: Uye[];
+  yemekler: Yemekler[];
+  favori: Favori[];
+  constructor(
+    public service: ServicesService
+  ) { }
 
-  constructor() {}
+  UyeListe() {
+    this.service.UyeListele().subscribe((d: Uye[]) => {
+      this.uye = d;
+    })
+  }
 
 }
