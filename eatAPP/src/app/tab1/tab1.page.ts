@@ -17,10 +17,16 @@ export class Tab1Page {
     public service: ServicesService
   ) { }
 
-  UyeListe() {
-    this.service.UyeListele().subscribe((d: Uye[]) => {
-      this.uye = d;
-    })
+  ngOnInit(): void {
+  //this.UyeListe();
+    
   }
+
+  // UyeListe() {
+  //   this.service.UyeListele().subscribe((d: Uye[]) => {
+  //     //this.uye = d;
+  //     //console.log(d);
+  //   })
+  // }
 
 }

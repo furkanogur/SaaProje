@@ -1,0 +1,11 @@
+{
+    "/ServicesService/*": {
+        "target": "https://localhost:44395/api",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/ServicesService": ""
+        }
+    }
+}

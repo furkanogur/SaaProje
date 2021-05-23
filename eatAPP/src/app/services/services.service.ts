@@ -13,7 +13,7 @@ import { YemekMalzeme } from '../models/YemekMalzeme';
 
 @Injectable()
 export class ServicesService {
-     apiUrl = "https://localhost:44395/";
+     apiUrl = "https://localhost:44395/api/";
      constructor(
           public http: HttpClient
      ) { }
