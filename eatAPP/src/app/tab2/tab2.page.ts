@@ -22,17 +22,17 @@ export class Tab2Page {
       this.KatListe();
         
       }
-
+/*listeleme başlangıç*/
   MalzemeListe() {
     this.service.MalzemeleListele().subscribe((d: Malzemeler[]) => {
       this.malzemeler = d;
     })
   }
+
   KatListe() {
     this.service.KatYemekListele().subscribe((d: KategoriYemek[]) => {
       this.kategoriler = d;
     })
   }
-
-
+/*listeleme bitiş*/
 }
