@@ -15,14 +15,31 @@
 
     <ion-card *ngFor="let u of uye">
         <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
+            <ion-chip>
+                <ion-avatar>
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                </ion-avatar>
+                <ion-label>{{u.uyeAdSoyad}}</ion-label>
+            </ion-chip>
+            <ion-card-subtitle>alt başlık</ion-card-subtitle>
+            <ion-card-title>
+                <img src="https://i4.hurimg.com/i/hurriyet/75/750x422/5d4015917152d80f80b3f75a.jpg">
+            </ion-card-title>
         </ion-card-header>
 
+
+
         <ion-card-content>
-            {{u.uyeAdSoyad}}
+
+
+            <ion-button color="light">
+                <ion-icon slot="icon-only" name="ribbon-outline" color="danger"></ion-icon>
+            </ion-button>
+            <ion-button class="possition" color="light">
+                <ion-icon name="bookmark-outline" color="warning"></ion-icon>
+            </ion-button>
+            <p>açıklama</p>
         </ion-card-content>
     </ion-card>
 
-    <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

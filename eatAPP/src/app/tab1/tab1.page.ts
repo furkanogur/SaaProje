@@ -18,15 +18,14 @@ export class Tab1Page {
   ) { }
 
   ngOnInit(): void {
-  //this.UyeListe();
+  this.UyeListe();
     
   }
 
-  // UyeListe() {
-  //   this.service.UyeListele().subscribe((d: Uye[]) => {
-  //     //this.uye = d;
-  //     //console.log(d);
-  //   })
-  // }
+  UyeListe() {
+    this.service.UyeListele().subscribe((d: Uye[]) => {
+      this.uye = d;
+    })
+  }
 
 }

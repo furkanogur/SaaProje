@@ -1,17 +1,80 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tarif Ekle
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Tab 2</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Tarifin Adı</ion-card-title>
+            <ion-input type="text" placeholder="Tarif Adı"></ion-input>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-card color="danger">
+                <ion-card-header>
+                    <ion-card-title>Kategori</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-select value="notifications" interface="action-sheet">
+                            <ion-select-option value="enable">Enable</ion-select-option>
+                            <ion-select-option value="mute">Mute</ion-select-option>
+                            <ion-select-option value="mute_week">Mute for a week</ion-select-option>
+                            <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+            <ion-list>
+                <ion-item>
+                    <ion-label>Awesome Label</ion-label>
+                </ion-item>
+            </ion-list>
+
+            <ion-card color="danger">
+                <ion-card-header>
+                    <ion-card-title>Malzemeler</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-select value="notifications" interface="action-sheet">
+                            <ion-select-option value="enable">Enable</ion-select-option>
+                            <ion-select-option value="mute">Mute</ion-select-option>
+                            <ion-select-option value="mute_week">Mute for a week</ion-select-option>
+                            <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label>Awesome Label</ion-label>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-card color="danger">
+                <ion-card-header>
+                    <ion-card-title>Tarif</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-textarea placeholder="tarifi giriniz"></ion-textarea>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-card-content>
+    </ion-card>
+    <ion-button expand="block">Gönder</ion-button>
+
 </ion-content>
