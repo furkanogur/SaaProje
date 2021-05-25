@@ -25,10 +25,7 @@
                 <ion-card-content>
                     <ion-item>
                         <ion-select value="notifications" interface="action-sheet">
-                            <ion-select-option value="enable">Enable</ion-select-option>
-                            <ion-select-option value="mute">Mute</ion-select-option>
-                            <ion-select-option value="mute_week">Mute for a week</ion-select-option>
-                            <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+                            <ion-select-option *ngFor="let kat of kategoriler">{{kat.Kategori_yemek1}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-card-content>
@@ -46,11 +43,8 @@
                 </ion-card-header>
                 <ion-card-content>
                     <ion-item>
-                        <ion-select value="notifications" interface="action-sheet">
-                            <ion-select-option value="enable">Enable</ion-select-option>
-                            <ion-select-option value="mute">Mute</ion-select-option>
-                            <ion-select-option value="mute_week">Mute for a week</ion-select-option>
-                            <ion-select-option value="mute_year">Mute for a year</ion-select-option>
+                        <ion-select interface="action-sheet">
+                            <ion-select-option *ngFor="let mal of malzemeler">{{mal.Malzemeler1}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-card-content>
@@ -58,7 +52,7 @@
 
             <ion-list>
                 <ion-item>
-                    <ion-label>Awesome Label</ion-label>
+                    <ion-label>mal tut</ion-label>
                 </ion-item>
             </ion-list>
 
