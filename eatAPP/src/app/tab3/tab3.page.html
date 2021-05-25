@@ -3,6 +3,15 @@
         <ion-title>
             HESABIM
         </ion-title>
+
+        <!-- Sağ üst ayarlar deneme !!! -->
+        <ion-buttons slot="end">
+            <ion-button color="dark">
+                <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <!-- Sağ üst ayarlar deneme !!! -->
+
     </ion-toolbar>
 </ion-header>
 
@@ -58,5 +67,32 @@
 
     </ion-row>
 
+
+    <!-- grid sistemi deneme !!!! -->
+
+
+    <ion-segment value="active">
+        <ion-segment-button value="active">
+            <ion-icon name="grid-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button>
+            <ion-icon name="people-circle-outline"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+
+
+    <ion-row>
+        <ion-col size="12">
+            <div class="post-grid">
+                <ion-row>
+                    <ion-col size="4" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                        <div class="post-item bg-image" [style.backgroundImage]="'url(https://www.uzaypastanesi.com/images/content/yemek_syf_2_D3sZ.jpg)'"><img src="https://www.uzaypastanesi.com/images/content/yemek_syf_2_D3sZ.jpg" alt=""></div>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-col>
+    </ion-row>
+
+    <!-- grid sistemi deneme !!!! -->
 
 </ion-content>
