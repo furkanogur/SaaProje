@@ -7,7 +7,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
+sayi=1;
 
   constructor() {}
 

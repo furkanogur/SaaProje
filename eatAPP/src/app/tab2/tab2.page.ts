@@ -1,7 +1,6 @@
 import { ServicesService } from './../services/services.service';
 import { Malzemeler } from './../models/Malzemeler';
 import { Component } from '@angular/core';
-import { YemekKategori } from '../models/YemekKategori';
 import { KategoriYemek } from '../models/KategoriYemek';
 
 @Component({
@@ -12,6 +11,7 @@ import { KategoriYemek } from '../models/KategoriYemek';
 export class Tab2Page {
   malzemeler:Malzemeler[];
   kategoriler:KategoriYemek[];
+  malDizi:string[];
 
   constructor(
     public service: ServicesService
@@ -35,4 +35,13 @@ export class Tab2Page {
     })
   }
 /*listeleme bitiş*/
+
+
+malArrayEkle(){
+
+
+
 }
+
+}
+
