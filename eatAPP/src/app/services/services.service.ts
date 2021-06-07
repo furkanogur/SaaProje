@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Favori } from '../models/Favori';
 import { KategoriMalzeme } from '../models/KategoriMalzeme';
@@ -208,6 +208,34 @@ export class ServicesService {
      FavoriSil(favoriId: string) {
           return this.http.delete(this.apiUrl + "favorisil" + favoriId);
      }
+
+     //Oturum
+
+  tokenAl(email: string, parola: string) {
+     var data = "username=" + email + "&password=" + parola + "&grant_type=password";
+     var reqHeader = new HttpHeaders({ "Content-Type": "application/x-www-form-urlencoded" });
+     return this.http.post(this.apiUrl + "/token", data, { headers: reqHeader })
+   }
+ 
+   oturumKontrol() {
+     if (localStorage.getItem("token")) {
+       return true;
+     }
+     else {
+       return false;
+     }
+   }
+ 
+   oturumKontrolAdmin() {
+ 
+     if (localStorage.getItem("uyeYetkileri") == '["Admin"]') {
+ 
+       return true;
+     }
+     else {
+       return false;
+     }
+   }
 
 
 }

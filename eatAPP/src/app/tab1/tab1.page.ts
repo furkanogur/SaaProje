@@ -11,7 +11,7 @@ import { ServicesService } from '../services/services.service';
 })
 export class Tab1Page {
   uye: Uye[];
-  yemekler: Yemekler[];
+  // yemekler: Yemekler[];
   favori: Favori[];
   constructor(
     public service: ServicesService
