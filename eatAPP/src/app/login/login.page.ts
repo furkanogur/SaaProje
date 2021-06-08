@@ -22,7 +22,8 @@ yeniuye:Uye = new Uye;
     this.frmGroup = new FormGroup({
       uyeAdSoyad: new FormControl(),
       uyeEmail: new FormControl(),
-      uyeSifre: new FormControl()
+      uyeSifre: new FormControl(),
+      uyeTelefon: new FormControl()
 
     });
   }
