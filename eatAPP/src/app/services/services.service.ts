@@ -98,6 +98,10 @@ export class ServicesService {
           return this.http.delete(this.apiUrl + "yemekkategorisil" + yemekKatlId);
      }
 
+     YemekKategoriHepsiListe() {
+          return this.http.get(this.apiUrl + "yemekkatliste")
+     }
+
      //Takipci
      TakipciListele() {
           return this.http.get(this.apiUrl + "takipciliste")

@@ -7,70 +7,44 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Tab 2</ion-title>
-        </ion-toolbar>
-    </ion-header>
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Tarifin Adı</ion-card-title>
-            <ion-input type="text" placeholder="Tarif Adı"></ion-input>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-card color="danger">
-                <ion-card-header>
-                    <ion-card-title>Kategori</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-item>
-                        <ion-select value="notifications" interface="action-sheet">
-                            <ion-select-option *ngFor="let kat of kategoriler">{{kat.Kategori_yemek1}}</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-card-content>
-            </ion-card>
 
-            <ion-list>
-                <ion-item>
-                    <ion-label>Kategori tut</ion-label>
-                </ion-item>
-            </ion-list>
+    <form [formGroup]="frmGroup">
 
-            <ion-card color="danger">
-                <ion-card-header>
-                    <ion-card-title>Malzemeler</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-item>
-                        <ion-select interface="action-sheet">
-                            <ion-select-option *ngFor="let mal of malzemeler" (click)="malArrayEkle()">{{mal.Malzemeler1}}</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-card-content>
-            </ion-card>
+        <ion-item>
+            <ion-label position="floating">Yemek Adı
+                <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input type="text" formControlName="YemekAdi"></ion-input>
+        </ion-item>
 
-            <ion-list>
-                <ion-item>
-                    <ion-label>mal tut</ion-label>
-                </ion-item>
-            </ion-list>
+        <ion-item>
+            <ion-label>Malzemeler</ion-label>
+            <ion-select formControlName="malzemeId" value="Kategoriler" multiple="true" placeholder="Kategori Seçiniz">
+                <ion-select-option [value]="mal.malzemeId" *ngFor="let mal of malzemeler">{{mal.Malzemeler1}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Kategoriler</ion-label>
+            <ion-select formControlName="katYemekId" value="Kategoriler" placeholder="Kategori Seçiniz">
+                <ion-select-option [value]="kat.katYemekId" *ngFor="let kat of kategoriler">{{kat.Kategori_yemek1}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Tarif
+                <ion-textarea color="danger">*</ion-textarea>
+            </ion-label>
+            <ion-input type="text" formControlName="Tarif"></ion-input>
+        </ion-item>
 
 
-            <ion-card color="danger">
-                <ion-card-header>
-                    <ion-card-title>Tarif</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-item>
-                        <ion-textarea placeholder="tarifi giriniz"></ion-textarea>
-                    </ion-item>
-                </ion-card-content>
-            </ion-card>
-        </ion-card-content>
-    </ion-card>
 
-    <ion-button expand="block">Gönder</ion-button>
-
+        <ion-button color="primary" (click)="YemekEkle(frmGroup.value)">
+            Kayıt Ol
+        </ion-button>
+    </form>
 
 </ion-content>

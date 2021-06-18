@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   frmGroup: FormGroup;
   
 sayi=1;
-yeniuye:Uye = new Uye;
+
 
   constructor(
     public servis:ServicesService,
@@ -56,12 +56,11 @@ yeniuye:Uye = new Uye;
     uye.uyeAdSoyad = frmGroup.uyeAdSoyad
     uye.uyeEmail = frmGroup.uyeEmail
     uye.uyeSifre = frmGroup.uyeSifre
-    
+    uye.uyeTelefon = frmGroup.uyeTelefon
     if (uye) {
       this.servis.UyeEkle(uye).subscribe((s: Sonuc) => {
         console.log(s);
         
       });
     }
-  }
-}
+  } }
