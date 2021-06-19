@@ -5,46 +5,49 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-
     <form [formGroup]="frmGroup">
-
         <ion-item>
-            <ion-label position="floating">Yemek Adı
-                <ion-text color="danger">*</ion-text>
+            <ion-label position="floating" color="danger">Yemek Adı
+                <ion-text color="danger">
+                    <ion-icon name="at-outline"></ion-icon>
+                </ion-text>
             </ion-label>
             <ion-input type="text" formControlName="YemekAdi"></ion-input>
         </ion-item>
-
         <ion-item>
-            <ion-label>Malzemeler</ion-label>
-            <ion-select formControlName="malzemeId" value="Kategoriler" multiple="true" placeholder="Kategori Seçiniz">
+            <ion-label color="warning">Malzeme Seçiniz
+                <ion-icon name="layers-outline"></ion-icon>
+            </ion-label>
+            <ion-select formControlName="malzemeId" multiple="true">
                 <ion-select-option [value]="mal.malzemeId" *ngFor="let mal of malzemeler">{{mal.Malzemeler1}}
                 </ion-select-option>
             </ion-select>
         </ion-item>
-
         <ion-item>
-            <ion-label>Kategoriler</ion-label>
-            <ion-select formControlName="katYemekId" value="Kategoriler" placeholder="Kategori Seçiniz">
+            <ion-label color="success">Kategori Seçiniz
+                <ion-icon name="trail-sign-outline"></ion-icon>
+            </ion-label>
+            <ion-select formControlName="katYemekId" value="Kategoriler" multiple="true">
                 <ion-select-option [value]="kat.katYemekId" *ngFor="let kat of kategoriler">{{kat.Kategori_yemek1}}
                 </ion-select-option>
             </ion-select>
         </ion-item>
-
         <ion-item>
-            <ion-label position="floating">Tarif
-                <ion-textarea color="danger">*</ion-textarea>
-            </ion-label>
-            <ion-input type="text" formControlName="Tarif"></ion-input>
+            <ion-textarea formControlName="Tarif" color="secondary" placeholder="Tarif Giriniz">Tarif
+                <ion-icon name="filter-outline"></ion-icon>
+            </ion-textarea>
         </ion-item>
-
-
-
-        <ion-button color="primary" (click)="YemekEkle(frmGroup.value)">
-            Kayıt Ol
+        <div class="post-media">
+            <img [src]="secilenFoto">
+            <!-- butonu düzlet -->
+        </div>
+        <ion-item>
+            <ion-input type="file" #foto (change)="FotoSec($event)" onclick="this.value=null"></ion-input>
+        </ion-item>
+        <ion-button (click)="YemekEkle(frmGroup.value)" color="tertiary" expand="block">
+            <ion-icon slot="start" name="fast-food"></ion-icon>
+            Yemek Ekle
         </ion-button>
     </form>
-
 </ion-content>

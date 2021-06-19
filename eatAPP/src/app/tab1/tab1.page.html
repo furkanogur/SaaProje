@@ -13,50 +13,9 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-card *ngFor="let u of uye">
-        <ion-card-header>
-            <ion-chip>
-                <ion-avatar>
-                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                </ion-avatar>
-                <ion-label>{{u.uyeAdSoyad}}</ion-label>
-            </ion-chip>
-            <ion-card-subtitle>alt başlık</ion-card-subtitle>
-            <ion-card-title>
-                <img src="https://i4.hurimg.com/i/hurriyet/75/750x422/5d4015917152d80f80b3f75a.jpg">
-            </ion-card-title>
-        </ion-card-header>
-
-
-
-        <ion-card-content>
-
-
-            <ion-button color="light">
-                <ion-icon slot="icon-only" name="ribbon-outline" color="danger"></ion-icon>
-            </ion-button>
-            <ion-button class="possition" color="light">
-                <ion-icon name="bookmark-outline" color="warning"></ion-icon>
-            </ion-button>
-            <p>açıklama</p>
-        </ion-card-content>
-    </ion-card>
-
-
-
-
-
-
-
-
-
-    <!-- deneme -->
-
-    <h4>!!! ALT TARAF HENÜZ TEST AŞAMASINDA !!!</h4>
-
 
     <div class="post-list">
-        <div class="post-item" *ngFor="let u of uye" style="margin-top: 15%;">
+        <div class="post-item" *ngFor="let ye of yemek" style="margin-top: 15%;">
             <div class="post-header">
                 <ion-row class="ion-justify-content-center ion-align-items-center" routerLink="/hesabim">
                     <ion-col size="auto">
@@ -65,7 +24,7 @@
                         </ion-avatar>
                     </ion-col>
                     <ion-col>
-                        <strong>{{u.uyeAdSoyad}}</strong>
+                        <strong>{{ye.UyeBilgisi?.uyeAdSoyad}}</strong>
                     </ion-col>
                     <ion-col size="auto">
                         <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -81,7 +40,7 @@
                         <ion-button fill="clear" color="dark">
                             <ion-icon slot="icon-only" name="ribbon-outline" color="danger"></ion-icon>
                         </ion-button>
-                        <ion-button fill="clear" color="dark" class="possition">
+                        <ion-button fill="clear" color="dark" class="possition" (click)="FavoriEkle(ye?.yemekId)">
                             <ion-icon slot="icon-only" name="bookmark-outline" color="warning"></ion-icon>
                         </ion-button>
 
@@ -89,11 +48,10 @@
                 </ion-row>
             </div>
             <div>
-                <p style="text-align: center; margin: 0%;">Daha Fazlası...</p>
+                <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.YemekAdi}}</p>
+                <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.yemekId}}</p>
+                <p style="margin-left: 5%;"><b>Yemeğin Tarifi :</b>{{ye.Tarif}}</p>
             </div>
         </div>
     </div>
-
-    <!-- deneme bitiş -->
-
 </ion-content>

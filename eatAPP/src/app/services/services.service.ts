@@ -1,3 +1,4 @@
+import { UrunFoto } from './../models/UrunFoto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Favori } from '../models/Favori';
@@ -23,7 +24,7 @@ export class ServicesService {
      }
 
      UyeById(uyeId: string) {
-          return this.http.get(this.apiUrl + "uyebyid" + uyeId);
+          return this.http.get(this.apiUrl + "uyebyid/" + uyeId);
      }
 
      UyeEkle(uye: Uye) {
@@ -202,7 +203,10 @@ export class ServicesService {
      //Favori
 
      FavoriById(favoriId: string) {
-          return this.http.get(this.apiUrl + "favoribyid" + favoriId);
+          return this.http.get(this.apiUrl + "favoribyid/" + favoriId);
+     }
+     FavoriByUyeId(favoriuyeıd: string) {
+          return this.http.get(this.apiUrl + "favoribyuyeid/" + favoriuyeıd);
      }
 
      FavoriEkle(favori: Favori) {
@@ -210,8 +214,15 @@ export class ServicesService {
      }
 
      FavoriSil(favoriId: string) {
-          return this.http.delete(this.apiUrl + "favorisil" + favoriId);
+          return this.http.delete(this.apiUrl + "favorisil/" + favoriId);
      }
+
+
+     //Yemek Foto
+
+     YemekFotoGuncelle(yemekFoto: UrunFoto) {
+          return this.http.post(this.apiUrl + "yemekfotoguncelle", yemekFoto);
+        }
 
      //Oturum
 

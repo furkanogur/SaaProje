@@ -1,3 +1,5 @@
+import { Sonuc } from './../models/sonuc';
+import { UrunFoto } from './../models/UrunFoto';
 import { YemekMalzeme } from './../models/YemekMalzeme';
 import { YemekKategori } from './../models/YemekKategori';
 import { Yemekler } from './../models/yemekler';
@@ -6,7 +8,7 @@ import { ServicesService } from './../services/services.service';
 import { Malzemeler } from './../models/Malzemeler';
 import { Component } from '@angular/core';
 import { KategoriYemek } from '../models/KategoriYemek';
-import { Sonuc } from '../models/sonuc';
+
 
 @Component({
   selector: 'app-tab2',
@@ -14,13 +16,16 @@ import { Sonuc } from '../models/sonuc';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  secilenFoto: any;
   uyeId: string = localStorage.getItem("uyeId");
   frmGroup: FormGroup;
   kategoriler: KategoriYemek[];
   malzemeler: Malzemeler[];
   kategori: KategoriYemek;
-  katYemekId: string;
+  katYemekId: any;
   malzemeId: any;
+  yemekıd:string;
+
   constructor(
     public service: ServicesService,
     public frmbuilder: FormBuilder,
@@ -32,14 +37,10 @@ export class Tab2Page {
       malzemeId: new FormControl(),
     })
   }
-
-
   ngOnInit(): void {
     this.yemekKategoriListe()
     this.MalzemeListe()
   }
-
-
   YemekEkle(frmGroup) {
     var yemekler: Yemekler = new Yemekler();
     var yemekKategori: YemekKategori = new YemekKategori();
@@ -51,17 +52,18 @@ export class Tab2Page {
     this.malzemeId = frmGroup.malzemeId
     if (yemekler) {
       this.service.YemekEkle(yemekler).subscribe((s: Sonuc) => {
-        console.log(this.katYemekId)
         yemekKategori.Kategori_yemek_id = this.katYemekId
         yemekKategori.Yemek_id = s.id
         yemekMalzeme.Yemek_id = s.id
+        this.yemekıd=s.id;
         yemekMalzeme.Malzeme_id = this.malzemeId
         yemekMalzeme.Birim = "0";
         yemekMalzeme.Miktar = "0";
-        console.log(yemekMalzeme.Malzeme_id);
-        console.log(this.malzemeId);
-        this.service.YemekKategoriEkle(yemekKategori).subscribe((s: Sonuc) => {
-          console.log(s);
+        this.katYemekId.forEach(element => {
+          yemekKategori.Kategori_yemek_id = element
+          yemekKategori.Yemek_id = s.id
+          this.service.YemekKategoriEkle(yemekKategori).subscribe((s: Sonuc) => {
+          });
         });
         this.malzemeId.forEach(element => {
           yemekMalzeme.Yemek_id = s.id
@@ -69,9 +71,10 @@ export class Tab2Page {
           yemekMalzeme.Birim = "0";
           yemekMalzeme.Miktar = "0";
           this.service.YemekMalzemeEkle(yemekMalzeme).subscribe((s: Sonuc) => {
-            console.log(s);
           })
-          console.log(element)
+        })
+        this.urunFoto.yemekId=this.yemekıd
+        this.service.YemekFotoGuncelle(this.urunFoto).subscribe((s:Sonuc)=>{
         })
       });
     }
@@ -80,19 +83,25 @@ export class Tab2Page {
   yemekKategoriListe() {
     this.service.KatYemekListele().subscribe((d: any = KategoriYemek) => {
       this.kategoriler = d;
-      console.log(d);
     })
   }
 
   MalzemeListe() {
     this.service.MalzemeleListele().subscribe((d: any = Malzemeler) => {
       this.malzemeler = d;
-      console.log(d);
     })
   }
-
-
-
-
+ urunFoto: UrunFoto = new UrunFoto();
+  FotoSec(e) {
+    var fotolar = e.target.files;
+    var foto = fotolar[0];
+    var fr = new FileReader();
+    fr.onloadend = () => {
+      this.secilenFoto = fr.result;
+      this.urunFoto.fotoData = fr.result.toString();
+      this.urunFoto.fotoUzanti = foto.type;
+    };
+    fr.readAsDataURL(foto);
+  }
 }
 
