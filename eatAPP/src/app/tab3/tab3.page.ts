@@ -17,7 +17,8 @@ favori:Favori[];
 
 
   constructor(
-    public servis:ServicesService
+    public servis:ServicesService,
+    private menu: MenuController
   ) {}
 
 ngOnInit(): void {
@@ -37,5 +38,20 @@ favoriListeById(){
     this.favori = d;
     console.log(d)
   })
+}
+
+
+openFirst() {
+  this.menu.enable(true, 'first');
+  this.menu.open('first');
+}
+
+openEnd() {
+  this.menu.open('end');
+}
+
+openCustom() {
+  this.menu.enable(true, 'custom');
+  this.menu.open('custom');
 }
 }

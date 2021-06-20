@@ -12,27 +12,49 @@
             <ion-title size="large">Anasayfa</ion-title>
         </ion-toolbar>
     </ion-header>
-
-
     <div class="post-list">
         <div class="post-item" *ngFor="let ye of yemek" style="margin-top: 15%;">
             <div class="post-header">
-                <ion-row class="ion-justify-content-center ion-align-items-center" routerLink="/hesabim">
+                <ion-row class="ion-justify-content-center ion-align-items-center">
                     <ion-col size="auto">
-                        <ion-avatar class="avatar-sm">
-                            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="">
+                        <ion-avatar class="avatar-sm" [routerLink]="['kisidetay/',ye.YemekUyeId]">
+                            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="" [routerLink]="['/kisidetay/',ye.YemekUyeId]">
                         </ion-avatar>
                     </ion-col>
                     <ion-col>
-                        <strong>{{ye.UyeBilgisi?.uyeAdSoyad}}</strong>
+                        <!-- <ion-button [routerLink]="['kisidetay/',ye.YemekUyeId]">
+                            <strong>{{ye.UyeBilgisi?.uyeAdSoyad}}</strong>
+                        </ion-button> -->
+                        <strong [routerLink]="['kisidetay/',ye.YemekUyeId]">{{ye.UyeBilgisi?.uyeAdSoyad}}</strong>
+
+
+
                     </ion-col>
+
+
+
+
                     <ion-col size="auto">
-                        <ion-icon name="ellipsis-horizontal"></ion-icon>
+                        <ion-button (click)="showPopover($event,ye.yemekId)" fill="clear" color="warning">
+                            <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+                        </ion-button>
                     </ion-col>
+
+
+
+
+
+
+
+
+
+
+
+
                 </ion-row>
             </div>
             <div class="post-media">
-                <img src="https://i4.hurimg.com/i/hurriyet/75/750x422/5d4015917152d80f80b3f75a.jpg" alt="">
+                <img [src]="service.siteUrl+'/Dosyalar/'+ ye.yemekFoto">
             </div>
             <div class="post-actions">
                 <ion-row>
@@ -54,4 +76,5 @@
             </div>
         </div>
     </div>
+
 </ion-content>

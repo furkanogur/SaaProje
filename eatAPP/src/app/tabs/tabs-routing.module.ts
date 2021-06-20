@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../login/login.module').then(m => m.LoginPageModule)
       },
       {
+        path: 'kisidetay',
+        loadChildren: () => import('../detay/kisidetay/kisidetay.module').then(m => m.KisidetayPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

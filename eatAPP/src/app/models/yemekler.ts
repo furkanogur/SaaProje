@@ -3,6 +3,7 @@ export class Yemekler {
     YemekUyeId: string;
     YemekAdi: string;
     Tarif: string;
+    yemekFoto:string;
     UyeBilgisi: {
         uyeId: string;
         uyeAdSoyad: string;

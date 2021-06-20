@@ -1,0 +1,11 @@
+.post-grid {
+    ion-row {
+        --ion-grid-column-padding: 1px;
+    }
+    .post-item {
+        width: 200px;
+        height: auto;
+        padding: 0%;
+        margin-left: 5%;
+    }
+}

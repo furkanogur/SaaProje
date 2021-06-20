@@ -40,3 +40,9 @@
 @import './sass/app.scss';
 
 /*sonradan eklenen bitiş*/
+
+.my-custom-class {
+    --background: #222;
+    --height: 50%;
+    --width: 25%;
+}

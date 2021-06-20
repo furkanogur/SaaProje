@@ -1,23 +1,28 @@
+import { AnasayfaComponent } from './../dialog/anasayfa/anasayfa.component';
+
 import { Sonuc } from './../models/sonuc';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Favori } from '../models/Favori';
 import { Uye } from '../models/Uye';
 import { Yemekler } from '../models/yemekler';
 import { ServicesService } from '../services/services.service';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
+  popoverData:any;
   uye: Uye[];
   yemek: Yemekler[];
   favori: Favori;
   secYemekId: string;
   favoriYemekId: string;
   constructor(
-    public service: ServicesService
+    public service: ServicesService,
+    private popoverCtrl: PopoverController
   ) { }
 
   ngOnInit(): void {
@@ -49,4 +54,18 @@ export class Tab1Page {
     })
   }
 
+  async showPopover(event,yemekId:string) {
+    const popover = await this.popoverCtrl.create({
+      component: AnasayfaComponent,
+      event: event,
+      translucent: true,
+      componentProps: { name: 'world',secyemekId: yemekId}
+    });
+    console.log(yemekId);
+    popover.onDidDismiss().then(popoverEvent => {
+      this.popoverData = popoverEvent.data.popoverData;
+    });
+    await popover.present();
+    console.log(this.popoverData);
+  }
 }

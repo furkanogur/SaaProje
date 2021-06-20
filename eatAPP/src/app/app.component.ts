@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ServicesService } from './services/services.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  yemekid:string;
+  constructor(
+    public route:ActivatedRoute,
+    public servis:ServicesService
+  ) {}
   
+
+  ngOnInit(): void {
+    this.route.params.subscribe(p=>{
+      if(p){
+        this.yemekid = p.yemekid
+        console.log(this.yemekid)
+      }
+    })
+  }
 }

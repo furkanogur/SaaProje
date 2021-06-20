@@ -1,0 +1,38 @@
+<div class="my-custom-class">
+
+    <div style="margin: 10% 10%;">
+        <ion-button (click)="mewzu=1" color="primary" style="width: 30%; float: left;">
+            Düzenle
+        </ion-button>
+        <ion-button (click)="mewzu=2" color="primary" style="width: 30%; float: left;">
+            Sil
+        </ion-button>
+    </div>
+    &nbsp; &nbsp; &nbsp;
+
+
+    <div padding style="margin:10%; margin-bottom: 10%;" *ngIf="mewzu==1">
+        <h1>Düzenle</h1>
+        <div>
+            <ion-button (click)="dismiss()" color="primary" style="width: 30%; float: left;">
+                Kapat
+            </ion-button>
+            <ion-button (click)="YemekSil()" color="danger" style="width: 50%; float: left; margin-left: 5%;">
+                Yemeği Sil
+            </ion-button>
+        </div>
+    </div>
+
+    <div padding style="margin:10%; margin-bottom: 10%;" *ngIf="mewzu==2">
+        <h1>Sil</h1>
+        <div>
+            <ion-button (click)="dismiss()" color="primary" style="width: 30%; float: left;">
+                Kapat
+            </ion-button>
+            <ion-button (click)="YemekSil()" color="danger" style="width: 50%; float: left; margin-left: 5%;">
+                Yemeği Sil
+            </ion-button>
+        </div>
+    </div>
+
+</div>

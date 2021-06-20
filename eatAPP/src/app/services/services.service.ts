@@ -15,6 +15,7 @@ import { YemekMalzeme } from '../models/YemekMalzeme';
 @Injectable()
 export class ServicesService {
      apiUrl = "https://localhost:44395/api/";
+     siteUrl = "https://localhost:44395/";
      constructor(
           public http: HttpClient
      ) { }
@@ -45,7 +46,11 @@ export class ServicesService {
      }
 
      YemekById(yemekId: string) {
-          return this.http.get(this.apiUrl + "yemekbyid" + yemekId);
+          return this.http.get(this.apiUrl + "yemekbyid/" + yemekId);
+     }
+
+     YemekByUyeId(uyeid: string) {
+          return this.http.get(this.apiUrl + "yemekbyiduye/" + uyeid);
      }
 
      YemekEkle(yemek: Yemekler) {
@@ -57,7 +62,7 @@ export class ServicesService {
      }
 
      YemekSil(yemekId: string) {
-          return this.http.delete(this.apiUrl + "yemeksil" + yemekId);
+          return this.http.delete(this.apiUrl + "yemeksil/" + yemekId);
      }
 
      //YemekMalzeme
