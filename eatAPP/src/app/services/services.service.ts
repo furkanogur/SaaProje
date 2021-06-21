@@ -11,6 +11,7 @@ import { Uye } from '../models/Uye';
 import { YemekKategori } from '../models/YemekKategori';
 import { Yemekler } from '../models/yemekler';
 import { YemekMalzeme } from '../models/YemekMalzeme';
+import { UyeFoto } from '../models/UyeFoto';
 
 @Injectable()
 export class ServicesService {
@@ -37,7 +38,7 @@ export class ServicesService {
      }
 
      UyeSil(uyeId: string) {
-          return this.http.delete(this.apiUrl + "uyesil" + uyeId);
+          return this.http.delete(this.apiUrl + "uyesil/" + uyeId);
      }
 
      //Yemekler
@@ -210,6 +211,9 @@ export class ServicesService {
      FavoriById(favoriId: string) {
           return this.http.get(this.apiUrl + "favoribyid/" + favoriId);
      }
+     FavoriByuyeId(uyeid: string) {
+          return this.http.get(this.apiUrl + "favoribyuyeid/" + uyeid);
+     }
      FavoriByUyeId(favoriuyeıd: string) {
           return this.http.get(this.apiUrl + "favoribyuyeid/" + favoriuyeıd);
      }
@@ -227,6 +231,11 @@ export class ServicesService {
 
      YemekFotoGuncelle(yemekFoto: UrunFoto) {
           return this.http.post(this.apiUrl + "yemekfotoguncelle", yemekFoto);
+        }
+     //Yemek Foto
+
+     UyeFotoGuncelle(uyeFoto: UyeFoto) {
+          return this.http.post(this.apiUrl + "uyefotoguncelle", uyeFoto);
         }
 
      //Oturum
@@ -255,6 +264,22 @@ export class ServicesService {
      else {
        return false;
      }
+   }
+
+   yetkiKontrol(yetkiler) {
+     var uyeYetkileri: string[] = JSON.parse(localStorage.getItem("uyeYetkileri"));
+     var sonuc: boolean = false;
+     if (uyeYetkileri) {
+       yetkiler.forEach(element => {
+         if (uyeYetkileri.indexOf(element) > -1) {
+           sonuc = true;
+           return false;
+         }
+       });
+ 
+     }
+ 
+     return sonuc;
    }
 
 

@@ -27,12 +27,20 @@
         <ion-row>
             <ion-col size="4">
                 <ion-avatar>
-                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                    <img [src]="servis.siteUrl+'/Dosyalar/'+ uye?.uyeFoto">
                 </ion-avatar>
             </ion-col>
             <ion-col size="4">
             </ion-col>
         </ion-row>
+        <div *ngIf="islem==true">
+            <ion-item>
+                <ion-input type="file" #foto (change)="FotoSec($event)" onclick="this.value=null"></ion-input>
+            </ion-item>
+            <ion-button (click)="FotoGuncelle()" expand="block" fill="clear" shape="round">
+                Kaydet
+            </ion-button>
+        </div>
         <ion-row>
             <ion-col size="12">
                 <h6>{{uye?.uyeAdSoyad}}</h6>
@@ -41,7 +49,7 @@
     </div>
 
 
-    <ion-button expand="block" fill="clear" shape="round">
+    <ion-button expand="block" fill="clear" shape="round" (click)="islem=true">
         Düzenle
     </ion-button>
 
@@ -58,28 +66,29 @@
         </ion-segment-button>
     </ion-segment>
 
-
+    <!-- yemeklerim -->
     <ion-row *ngIf="sayi==1">
         <ion-col size="12">
             <div class="post-grid">
                 <ion-row>
                     <ion-col size="4" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
-                        <div class="post-item bg-image" [style.backgroundImage]="'url(https://www.uzaypastanesi.com/images/content/yemek_syf_2_D3sZ.jpg)'"></div>
+                        <div class="post-item bg-image" [style.backgroundImage]="'url(https://www.uzaypastanesi.com/images/content/yemek_syf_2_D3sZ.jpg)'">
+                        </div>
                     </ion-col>
                 </ion-row>
             </div>
         </ion-col>
     </ion-row>
+
+    <!-- favorilerim -->
     <ion-row *ngIf="sayi==2">
         <ion-col size="12">
             <div class="post-grid">
                 <ion-row>
-                    <ion-col size="4" *ngFor="let fav of favori; let i=index">
-                        <div class="post-item bg-image">sdasdasdasdas</div>
-                        <p>{{fav.favoriYemekId}}</p>
+                    <ion-col size="4" *ngFor="let fav of favori">
+                        <img [routerLink]="['yemekdetay/',fav.yemekBilgisi.yemekId,fav.yemekBilgisi.YemekUyeId]" [src]="servis.siteUrl+'/Dosyalar/'+ fav?.yemekBilgisi.yemekFoto" style="width: 100%; height: 100%;">
                     </ion-col>
                 </ion-row>
-
 
 
             </div>

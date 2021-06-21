@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../services/AuthGuard';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule),
+        
       },
       {
         path: 'tab2',
@@ -21,7 +23,12 @@ const routes: Routes = [
       },
       {
         path: 'tab4',
-        loadChildren: () => import('../tab4/tab4.module').then( m => m.Tab4PageModule)
+        loadChildren: () => import('../tab4/tab4.module').then( m => m.Tab4PageModule),
+        canActivate: [AuthGuard],
+    data: {
+      yetkiler: ["Admin"],
+      gerigit: "/"
+    }
       },
       {
         path: 'login',
@@ -30,6 +37,10 @@ const routes: Routes = [
       {
         path: 'kisidetay',
         loadChildren: () => import('../detay/kisidetay/kisidetay.module').then(m => m.KisidetayPageModule)
+      },
+      {
+        path: 'yemekdetay',
+        loadChildren: () => import('../detay/yemekdetay/yemekdetay.module').then(m => m.YemekdetayPageModule)
       },
       {
         path: '',

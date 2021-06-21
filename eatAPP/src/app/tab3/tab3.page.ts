@@ -1,5 +1,8 @@
+import { Sonuc } from './../models/sonuc';
+import { Yemekler } from './../models/yemekler';
 import { Favori } from './../models/Favori';
 import { Uye } from './../models/Uye';
+import { UyeFoto } from './../models/UyeFoto';
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ServicesService } from '../services/services.service';
@@ -10,10 +13,15 @@ import { ServicesService } from '../services/services.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  secilenFoto: any;
 sayi=1;
 uye:Uye;
 uyeId:string = localStorage.getItem("uyeId")
 favori:Favori[];
+favoriYemekId:string
+yemekler:Yemekler;
+favoriid:string;
+islem:boolean=false;
 
 
   constructor(
@@ -32,26 +40,42 @@ uyeById(){
     this.uye = d;
     console.log(d)
   })
+  
 }
+
+
+
 favoriListeById(){
-  this.servis.FavoriByUyeId(this.uyeId).subscribe((d:any =Favori)=>{
-    this.favori = d;
-    console.log(d)
+  this.servis.FavoriByUyeId(this.uyeId).subscribe((d:Favori[])=>{
+    this.favori=d;
   })
 }
 
 
-openFirst() {
-  this.menu.enable(true, 'first');
-  this.menu.open('first');
-}
 
-openEnd() {
-  this.menu.open('end');
-}
+uyeFoto: UyeFoto = new UyeFoto();
 
-openCustom() {
-  this.menu.enable(true, 'custom');
-  this.menu.open('custom');
-}
+  FotoSec(e) {
+    var fotolar = e.target.files;
+    var foto = fotolar[0];
+    var fr = new FileReader();
+    fr.onloadend = () => {
+      this.secilenFoto = fr.result;
+      this.uyeFoto.fotoData = fr.result.toString();
+      this.uyeFoto.fotoUzanti = foto.type;
+    };
+    fr.readAsDataURL(foto);
+  }
+
+
+  FotoGuncelle(){
+    this.uyeFoto.uyeId=this.uyeId
+        this.servis.UyeFotoGuncelle(this.uyeFoto).subscribe((s:Sonuc)=>{
+        if(s.islem==true){
+          location.href=("hesabim")
+        }
+        })
+  }
+
+
 }

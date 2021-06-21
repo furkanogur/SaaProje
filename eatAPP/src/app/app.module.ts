@@ -1,15 +1,15 @@
-import { AnasayfaComponent } from './dialog/anasayfa/anasayfa.component';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServicesService } from './services/services.service';
+import { AuthGuard } from './services/AuthGuard';
+import { AuthInterceptor } from './services/AuthInterceptor';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { ServicesService } from './services/services.service';
     
     
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ServicesService],
+  providers: [ServicesService, AuthGuard,
+    { provide:RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, ServicesService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

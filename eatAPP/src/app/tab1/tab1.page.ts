@@ -20,6 +20,7 @@ export class Tab1Page implements OnInit{
   favori: Favori;
   secYemekId: string;
   favoriYemekId: string;
+  uyeid:string
   constructor(
     public service: ServicesService,
     private popoverCtrl: PopoverController
@@ -30,6 +31,8 @@ export class Tab1Page implements OnInit{
     this.YemekListe();
     console.log()
   }
+
+
 
   UyeListe() {
     this.service.UyeListele().subscribe((d: Uye[]) => {

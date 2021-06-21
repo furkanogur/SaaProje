@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'kisidetay',
     loadChildren: () => import('./detay/kisidetay/kisidetay.module').then( m => m.KisidetayPageModule)
+  },
+  {
+    path: 'yemekdetay',
+    loadChildren: () => import('./detay/yemekdetay/yemekdetay.module').then( m => m.YemekdetayPageModule)
   }
 ];
 @NgModule({

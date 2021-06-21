@@ -5,4 +5,5 @@ export class Uye{
     uyeSifre:string;
     uyeTelefon:string;
     uyeAdmin:boolean;
+    uyeFoto:string;
 }

@@ -8,6 +8,7 @@ import { ServicesService } from './../services/services.service';
 import { Malzemeler } from './../models/Malzemeler';
 import { Component } from '@angular/core';
 import { KategoriYemek } from '../models/KategoriYemek';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class Tab2Page {
   constructor(
     public service: ServicesService,
     public frmbuilder: FormBuilder,
+    public alertController: AlertController
   ) {
     this.frmGroup = new FormGroup({
       YemekAdi: new FormControl(),
@@ -74,7 +76,27 @@ export class Tab2Page {
           })
         })
         this.urunFoto.yemekId=this.yemekıd
-        this.service.YemekFotoGuncelle(this.urunFoto).subscribe((s:Sonuc)=>{
+        this.service.YemekFotoGuncelle(this.urunFoto).subscribe(async (s:Sonuc)=>{
+          
+          
+            const alert = await this.alertController.create({
+              cssClass: 'my-custom-class',
+              header: 'Yemek Eklendi !',
+              message: '<strong>Teşekkür ederiz :)</strong>',
+              buttons: [  
+                 {
+                  text: 'Tamam',
+                  handler: () => {
+                    location.href=("/");
+                  }
+                }
+              ]
+            });
+        
+            await alert.present();
+          
+
+
         })
       });
     }
@@ -102,6 +124,21 @@ export class Tab2Page {
       this.urunFoto.fotoUzanti = foto.type;
     };
     fr.readAsDataURL(foto);
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert',
+      subHeader: 'Subtitle',
+      message: 'This is an alert message.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }
 

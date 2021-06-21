@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { YemekdetayPage } from '../detay/yemekdetay/yemekdetay.page';
 import { Tab3Page } from './tab3.page';
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'app',
     component: AppComponent,
+  },
+  {
+    path: 'yemekdetay/:yemekId/:uyeid',
+    component: YemekdetayPage,
   }
 ];
 
