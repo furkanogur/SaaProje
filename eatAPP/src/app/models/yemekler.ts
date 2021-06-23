@@ -11,6 +11,7 @@ export class Yemekler {
         uyeSifre: string;
         uyeTelefon: string;
         uyeAdmin: boolean;
+        uyeFoto: string;
     }
     YemekKategori: [
         {
