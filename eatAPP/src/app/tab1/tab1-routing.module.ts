@@ -1,3 +1,4 @@
+import { YemekDuzenlePage } from './../dialog/yemek-duzenle/yemek-duzenle.page';
 import { KisidetayPage } from './../detay/kisidetay/kisidetay.page';
 import { AppRoutingModule } from './../app-routing.module';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'yemekdetay/:yemekId/:uyeid',
     component: YemekdetayPage,
+  },
+  {
+    path: 'yemek-duzenle/:yemekId',
+    component: YemekDuzenlePage,
   }
 
 ];

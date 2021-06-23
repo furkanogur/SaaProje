@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Yemekler } from './../models/yemekler';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ServicesService } from '../services/services.service';
 
 @Component({
   selector: 'app-tab4',
@@ -6,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
+  yemek:Yemekler[];
 
-  constructor() { }
+
+
+  @ViewChild('searchbar', { read: ElementRef }) searchbarRef: ElementRef;
+  search: boolean = false;
+  queryText: string;
+
+
+
+  constructor( public servis:ServicesService,) { }
 
   ngOnInit() {
+    this.YemekListe();
+   
   }
 
+
+
+  YemekListe(){
+    this.servis.YemekListele().subscribe((d:Yemekler[])=>{
+      this.yemek=d;
+      console.log(this.yemek);
+    })
+  }
+
+  searchAction(texto: any) {
+    
+    let val = texto.target.value;
+    console.log(this.queryText)
+    //implement search
+  }
 }

@@ -7,6 +7,7 @@ import { Uye } from '../models/Uye';
 import { Yemekler } from '../models/yemekler';
 import { ServicesService } from '../services/services.service';
 import { PopoverController } from '@ionic/angular';
+import { Takipci } from '../models/Takipci';
 
 @Component({
   selector: 'app-tab1',
@@ -21,6 +22,8 @@ export class Tab1Page implements OnInit{
   secYemekId: string;
   favoriYemekId: string;
   uyeid:string
+  takipci:Takipci[];
+  duzuyeid:string=localStorage.getItem("uyeId");
   constructor(
     public service: ServicesService,
     private popoverCtrl: PopoverController
@@ -29,7 +32,6 @@ export class Tab1Page implements OnInit{
   ngOnInit(): void {
     this.UyeListe();
     this.YemekListe();
-    console.log()
   }
 
 
@@ -71,4 +73,15 @@ export class Tab1Page implements OnInit{
     await popover.present();
     console.log(this.popoverData);
   }
+
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 }
+

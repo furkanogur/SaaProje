@@ -45,6 +45,10 @@ export class ServicesService {
      YemekListele() {
           return this.http.get(this.apiUrl + "yemekliste")
      }
+     
+     AlgoritmikYemekListele(Uyeid: string) {
+          return this.http.get(this.apiUrl + "algoritmikyemekliste/" + Uyeid);
+     }
 
      YemekById(yemekId: string) {
           return this.http.get(this.apiUrl + "yemekbyid/" + yemekId);
@@ -72,7 +76,10 @@ export class ServicesService {
      }
 
      YemekMalzemeById(yemekmalId: string) {
-          return this.http.get(this.apiUrl + "yemekmalbyid" + yemekmalId);
+          return this.http.get(this.apiUrl + "yemekmalbyid/" + yemekmalId);
+     }
+     YemekMalzemeyemekById(yemekid: string) {
+          return this.http.get(this.apiUrl + "yemekmalyemekid/" + yemekid);
      }
 
      YemekMalzemeEkle(yemek: YemekMalzeme) {
@@ -84,10 +91,13 @@ export class ServicesService {
      }
 
      YemekMalzemeSil(yemekmalId: string) {
-          return this.http.delete(this.apiUrl + "yemekmalzemesil" + yemekmalId);
+          return this.http.delete(this.apiUrl + "yemekmalzemesil/" + yemekmalId);
      }
 
      //YemekKategori
+     YemekKategoriListele() {
+          return this.http.get(this.apiUrl + "katYemekliste")
+     }
 
      YemekKategoriListe(yemekKatId: string) {
           return this.http.get(this.apiUrl + "yemekkategoriliste" + yemekKatId);
@@ -102,7 +112,7 @@ export class ServicesService {
      }
 
      YemekKategoriSil(yemekKatlId: string) {
-          return this.http.delete(this.apiUrl + "yemekkategorisil" + yemekKatlId);
+          return this.http.delete(this.apiUrl + "yemekkategorisil/" + yemekKatlId);
      }
 
      YemekKategoriHepsiListe() {
@@ -115,11 +125,11 @@ export class ServicesService {
      }
 
      TakipEdenById(takipedenId: string) {
-          return this.http.get(this.apiUrl + "takipedenbyid" + takipedenId);
+          return this.http.get(this.apiUrl + "takipedenbyid/" + takipedenId);
      }
 
      TakipEdilenById(takipedilenlId: string) {
-          return this.http.get(this.apiUrl + "takipedilenbyid" + takipedilenlId);
+          return this.http.get(this.apiUrl + "takipedilenbyid/" + takipedilenlId);
      }
 
      TakipciEkle(takipci: Takipci) {
@@ -127,7 +137,7 @@ export class ServicesService {
      }
 
      TakipciSil(takipciId: string) {
-          return this.http.delete(this.apiUrl + "takipcisil" + takipciId);
+          return this.http.delete(this.apiUrl + "takipcisil/" + takipciId);
      }
 
      //Malzemeler
@@ -136,7 +146,7 @@ export class ServicesService {
      }
 
      MalzemeleById(malId: string) {
-          return this.http.get(this.apiUrl + "malzemebyid" + malId);
+          return this.http.get(this.apiUrl + "malzemebyid/" + malId);
      }
 
      MalzemeleEkle(malzeme: Malzemeler) {
@@ -148,7 +158,7 @@ export class ServicesService {
      }
 
      MalzemeleSil(malzemeid: string) {
-          return this.http.delete(this.apiUrl + "malzemezemesil" + malzemeid);
+          return this.http.delete(this.apiUrl + "malzemesil/" + malzemeid);
      }
 
      //MalzemeKategori
@@ -165,7 +175,7 @@ export class ServicesService {
      }
 
      MalKatSil(malKatId: string) {
-          return this.http.delete(this.apiUrl + "malkatsil" + malKatId);
+          return this.http.delete(this.apiUrl + "malkatsil/" + malKatId);
      }
 
      //KategoriYemek
@@ -174,7 +184,7 @@ export class ServicesService {
      }
 
      KatYemekById(katyemekId: string) {
-          return this.http.get(this.apiUrl + "katyemekbyid" + katyemekId);
+          return this.http.get(this.apiUrl + "katyemekbyid/" + katyemekId);
      }
 
      KatYemekEkle(katyemek: KategoriYemek) {
@@ -186,7 +196,7 @@ export class ServicesService {
      }
 
      KatYemekSil(katYemekId: string) {
-          return this.http.delete(this.apiUrl + "katyemeksil" + katYemekId);
+          return this.http.delete(this.apiUrl + "katyemeksil/" + katYemekId);
      }
 
      //KategoriMalzeme
@@ -195,7 +205,10 @@ export class ServicesService {
      }
 
      KatMalById(katmalıd: string) {
-          return this.http.get(this.apiUrl + "katmalbyid" + katmalıd);
+          return this.http.get(this.apiUrl + "katmalbyid/" + katmalıd);
+     }
+     KatMalDuzenle(katmal: KategoriMalzeme) {
+          return this.http.put(this.apiUrl + "Katmalduzenle", katmal);
      }
 
      KatMalEkle(katmalyemek: KategoriMalzeme) {
@@ -203,7 +216,7 @@ export class ServicesService {
      }
 
      KatMalSil(katmalıd: string) {
-          return this.http.delete(this.apiUrl + "kategorimalzemesil" + katmalıd);
+          return this.http.delete(this.apiUrl + "kategorimalzemesil/" + katmalıd);
      }
 
      //Favori

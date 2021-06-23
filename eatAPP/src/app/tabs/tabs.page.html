@@ -33,6 +33,10 @@
 
         </ion-tab-button>
 
+        <ion-tab-button tab="admin" *ngIf="servis.oturumKontrolAdmin()">
+            <ion-icon name="settings-outline"></ion-icon>
+        </ion-tab-button>
+
     </ion-tab-bar>
 
 </ion-tabs>

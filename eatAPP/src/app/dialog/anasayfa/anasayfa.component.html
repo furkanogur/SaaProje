@@ -14,12 +14,30 @@
     <div padding style="margin:10%; margin-bottom: 10%;" *ngIf="mewzu==1">
         <h1>Düzenle</h1>
         <div>
-            <ion-button (click)="dismiss()" color="primary" style="width: 30%; float: left;">
-                Kapat
-            </ion-button>
-            <ion-button (click)="YemekSil()" color="danger" style="width: 50%; float: left; margin-left: 5%;">
-                Yemeği Sil
-            </ion-button>
+            <form>
+                <ion-item>
+                    <ion-label position="floating" color="danger">Yemeğin Adı
+                        <ion-text color="danger">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </ion-text>
+                    </ion-label>
+                    <ion-input type="text" name="YemekAdi" formControlName="YemekAdi"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating" color="danger">Tarifi
+                        <ion-text color="danger">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </ion-text>
+                    </ion-label>
+                    <ion-input type="text" name="Tarif" formControlName="Tarif"></ion-input>
+                </ion-item>
+
+                <ion-button color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food" (click)="Yemek(frmGroup.value)"></ion-icon>
+                    Kaydet
+                </ion-button>
+            </form>
+
         </div>
     </div>
 

@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>yemekDuzenle</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="my-custom-class">
+        <div padding style="margin:10%; margin-bottom: 10%;">
+            <h1>Düzenle</h1>
+
+            <div>
+                <form [formGroup]="frmGroup">
+                    <ion-item>
+                        <ion-label position="floating" color="danger">Yemeğin Adı
+                            <ion-text color="danger">
+                                <ion-icon name="at-outline"></ion-icon>
+                            </ion-text>
+                        </ion-label>
+                        <ion-input type="text" name="YemekAdi" formControlName="YemekAdi"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating" color="danger">Tarifi
+                            <ion-text color="danger">
+                                <ion-icon name="at-outline"></ion-icon>
+                            </ion-text>
+                        </ion-label>
+                        <ion-input type="text" name="Tarif" formControlName="Tarif"></ion-input>
+                    </ion-item>
+
+                    <ion-button color="tertiary" expand="block" (click)="Yemek(frmGroup.value)">
+                        <ion-icon slot="start" name="fast-food"></ion-icon>
+                        Kaydet
+                    </ion-button>
+                </form>
+
+            </div>
+        </div>
+
+        <div padding style="margin:10%; margin-bottom: 10%;">
+            <h1>Sil</h1>
+            <div>
+                <ion-button (click)="YemekSil()" color="danger" style="width: 50%; float: left; margin-left: 5%;">
+                    Yemeği Sil
+                </ion-button>
+            </div>
+        </div>
+
+    </div>
+</ion-content>

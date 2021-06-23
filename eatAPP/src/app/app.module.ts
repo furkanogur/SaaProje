@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -10,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ServicesService } from './services/services.service';
 import { AuthGuard } from './services/AuthGuard';
 import { AuthInterceptor } from './services/AuthInterceptor';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -19,6 +21,9 @@ import { AuthInterceptor } from './services/AuthInterceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     
     
   ],

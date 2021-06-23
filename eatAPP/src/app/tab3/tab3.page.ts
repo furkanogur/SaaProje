@@ -6,6 +6,8 @@ import { UyeFoto } from './../models/UyeFoto';
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ServicesService } from '../services/services.service';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Malzemeler } from '../models/Malzemeler';
 
 @Component({
   selector: 'app-tab3',
@@ -14,6 +16,8 @@ import { ServicesService } from '../services/services.service';
 })
 export class Tab3Page {
   secilenFoto: any;
+  frmGroup: FormGroup;
+  yeniUye:Uye;
 sayi=1;
 uye:Uye;
 uyeId:string = localStorage.getItem("uyeId")
@@ -22,19 +26,35 @@ favoriYemekId:string
 yemekler:Yemekler;
 favoriid:string;
 islem:boolean=false;
+yemek:Yemekler[];
+malzemeduz:Malzemeler;
 
 
   constructor(
     public servis:ServicesService,
+    public frmbuilder: FormBuilder,
     private menu: MenuController
   ) {}
 
 ngOnInit(): void {
+  this.frmGroup = new FormGroup({
+    uyeSifre: new FormControl(),
+    uyeAdSoyad: new FormControl()
+  });
+
+
+
  this.uyeById();
  this.favoriListeById();
+ this.YemekListe();
   
 }
-
+cikis(){
+  localStorage.clear();
+  location.href=("login");
+}
+uyesifre:string;
+uyetel:string;
 uyeById(){
   this.servis.UyeById(this.uyeId).subscribe((d:Uye)=>{
     this.uye = d;
@@ -77,5 +97,47 @@ uyeFoto: UyeFoto = new UyeFoto();
         })
   }
 
+YemekListe(){
+  this.servis.YemekByUyeId(this.uyeId).subscribe((d:Yemekler[])=>{
+    this.yemek=d;
+    console.log(this.yemek);
+  })
+}
+
+
+
+
+
+SifreDuzenle(frmGroup) {
+  var uye: Uye = new Uye();
+  uye.uyeAdSoyad = this.uye.uyeAdSoyad
+  uye.uyeEmail = this.uye.uyeEmail
+  uye.uyeTelefon = this.uye.uyeTelefon
+  uye.uyeSifre = frmGroup.uyeSifre
+  uye.uyeId = this.uyeId
+  this.servis.UyeDuzenle(uye).subscribe((s: Sonuc) => {
+    if (s.islem) {
+      console.log(s)
+      this.uyeById();
+           }
+  })
+}
+
+
+
+AdSoyadDuzenle(frmGroup) {
+  var uye: Uye = new Uye();
+  uye.uyeAdSoyad = frmGroup.uyeAdSoyad
+  uye.uyeEmail = this.uye.uyeEmail
+  uye.uyeTelefon = this.uye.uyeTelefon
+  uye.uyeSifre = this.uye.uyeSifre
+  uye.uyeId = this.uyeId
+  this.servis.UyeDuzenle(uye).subscribe((s: Sonuc) => {
+    if (s.islem) {
+      console.log(s)
+      this.uyeById();
+           }
+  })
+}
 
 }

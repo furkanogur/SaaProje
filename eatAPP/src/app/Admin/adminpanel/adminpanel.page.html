@@ -1,0 +1,193 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>admin panel</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="button">
+
+
+
+
+        <ion-col size="12" (click)="islem=1">
+            <ion-button expand="block">Malzeme Ekle</ion-button>
+        </ion-col>
+        <ion-col size="12" (click)="islem=2">
+            <ion-button expand="block">Malzeme Kategori Ekle</ion-button>
+        </ion-col>
+        <ion-col size="12" (click)="islem=3">
+            <ion-button expand="block">Yemek Kategorisi Ekle</ion-button>
+        </ion-col>
+        <ion-col size="12" (click)="islem=4">
+            <ion-button expand="block">Yemekleri Listele</ion-button>
+        </ion-col>
+
+        <div *ngIf="islem==1">
+
+
+            <form [formGroup]="frmGroup">
+                <ion-item>
+                    <ion-label position="floating" color="danger">Malzeme Adı
+                        <ion-text color="danger">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </ion-text>
+                    </ion-label>
+                    <ion-input type="text" formControlName="Malzemeler1" name="Malzemeler1"></ion-input>
+                </ion-item>
+
+                <ion-button (click)="MalzemeEkle(frmGroup.value)" *ngIf="ackapa==0" color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Malzeme Ekle
+                </ion-button>
+                <ion-button (click)="MalDuzenle(frmGroup.value)" *ngIf="ackapa==1" color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Kaydet
+                </ion-button>
+            </form>
+
+
+            <div>
+                <ion-list>
+                    <ion-item *ngFor="let mal of malzeme">
+                        <ion-label>{{mal.Malzemeler1}}</ion-label>
+                        <ion-button expand="block" fill="clear" shape="round" (click)="MalDuzliste(mal)" (click)="ackapa=1">
+                            Duzenle
+                        </ion-button>
+
+                        <ion-button (click)="MalzemeSil(mal.malzemeId)" expand="block" fill="clear" shape="round" color="danger">
+                            Sil
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+
+
+
+
+        <div *ngIf="islem==2">
+
+            <form [formGroup]="frmGroup">
+                <ion-item>
+                    <ion-label position="floating" color="danger">Malzeme Kategori Ekle
+                        <ion-text color="danger">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </ion-text>
+                    </ion-label>
+                    <ion-input type="text" formControlName="Kategori_malzeme1"></ion-input>
+                </ion-item>
+
+                <ion-button (click)="MalzemeKategoriEkle(frmGroup.value)" *ngIf="ackapa==0" color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Malzeme Kategori Ekle
+                </ion-button>
+                <ion-button (click)="MalKatDuzenle(frmGroup.value)" *ngIf="ackapa==1" color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Kaydet
+                </ion-button>
+            </form>
+
+
+
+            <div>
+                <ion-list>
+                    <ion-item *ngFor="let mal of malkat">
+                        <ion-label>{{mal.Kategori_malzeme1}}</ion-label>
+                        <ion-button expand="block" fill="clear" shape="round" (click)="MalKatDuzliste(mal)" (click)="ackapa=1">
+                            Duzenle
+                        </ion-button>
+
+                        <ion-button (click)="MalKatSil(mal.katMalzemeId)" expand="block" fill="clear" shape="round" color="danger">
+                            Sil
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+
+
+
+        <div *ngIf="islem==3">
+
+            <form [formGroup]="frmGroup">
+                <ion-item>
+                    <ion-label position="floating" color="danger">Yemek Kategori Ekle
+                        <ion-text color="danger">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </ion-text>
+                    </ion-label>
+                    <ion-input type="text" formControlName="Kategori_yemek1"></ion-input>
+                </ion-item>
+
+                <ion-button (click)="YemekKategoriEkle(frmGroup.value)" color="tertiary" expand="block" *ngIf="ackapa==0">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Yemek Kategori Ekle
+                </ion-button>
+                <ion-button *ngIf="ackapa==1" (click)="YemekKat(frmGroup.value)" color="tertiary" expand="block">
+                    <ion-icon slot="start" name="fast-food"></ion-icon>
+                    Kaydet
+                </ion-button>
+            </form>
+
+
+            <div>
+                <ion-list>
+                    <ion-item *ngFor="let mal of katyem">
+                        <ion-label>{{mal.Kategori_yemek1}}</ion-label>
+                        <ion-button expand="block" fill="clear" shape="round" (click)="ackapa=1" (click)="KatYemekDuzliste(mal)">
+                            Duzenle
+                        </ion-button>
+
+                        <ion-button expand="block" (click)="YemekKatSil(mal.katYemekId)" fill="clear" shape="round" color="danger">
+                            Sil
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div *ngIf="islem==4">
+
+
+        <div class="post-list">
+            <div class="post-item" *ngFor="let ye of yemek" style="margin-top: 15%;">
+                <div class="post-header">
+                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                        <ion-col size="auto">
+                            <ion-avatar class="avatar-sm" [routerLink]="['kisidetay/',ye.YemekUyeId]">
+                                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="" [routerLink]="['/kisidetay/',ye.YemekUyeId]">
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col>
+                            <strong [routerLink]="['kisidetay/',ye.YemekUyeId]">{{ye.UyeBilgisi?.uyeAdSoyad}}</strong>
+                        </ion-col>
+
+                        <ion-col size="auto">
+                            <ion-button (click)="showPopover($event,ye.yemekId)" fill="clear" color="warning">
+                                <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="post-media" [routerLink]="['yemekdetay/',ye.yemekId,ye.YemekUyeId]">
+                    <img [src]="service.siteUrl+'/Dosyalar/'+ ye.yemekFoto">
+                </div>
+                <div [routerLink]="['yemekdetay/',ye.yemekId,ye.YemekUyeId]">
+                    <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.YemekAdi}}</p>
+                    <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.yemekId}}</p>
+                    <p style="margin-left: 5%;"><b>Yemeğin Tarifi :</b>{{ye.Tarif}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

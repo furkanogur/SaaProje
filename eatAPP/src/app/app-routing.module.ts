@@ -2,6 +2,7 @@ import { AnasayfaComponent } from './dialog/anasayfa/anasayfa.component';
 import { Tab3PageModule } from './tab3/tab3.module';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/AuthGuard';
 
 const routes: Routes = [
   {
@@ -39,6 +40,19 @@ const routes: Routes = [
   {
     path: 'yemekdetay',
     loadChildren: () => import('./detay/yemekdetay/yemekdetay.module').then( m => m.YemekdetayPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./Admin/adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      yetkiler: ["Admin"],
+      gerigit: "/"
+    }
+  },
+  {
+    path: 'yemek-duzenle',
+    loadChildren: () => import('./dialog/yemek-duzenle/yemek-duzenle.module').then( m => m.YemekDuzenlePageModule)
   }
 ];
 @NgModule({

@@ -1,11 +1,11 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>tab4</ion-title>
+        <ion-title>Keşfet</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-searchbar showCancelButton="never" value="Tarif Ara"></ion-searchbar>
+    <ion-searchbar #searchbar placeholder="Tarif Ara" (ionInput)="searchAction($event)" [(ngModel)]="queryText"></ion-searchbar>
     <ion-row>
         <ion-col size="6">
             <ion-button expand="full" color="danger">Ana Yemek</ion-button>
@@ -22,5 +22,9 @@
             <ion-button expand="full" color="success">Tatlı</ion-button>
         </ion-col>
     </ion-row>
-
+    <ion-row>
+        <ion-col size="3" *ngFor="let yem of yemek">
+            <img [routerLink]="['yemekdetay/',yem?.yemekId,yem?.YemekUyeId]" [src]="servis.siteUrl+'/Dosyalar/'+ yem?.yemekFoto" style="width: 100%; height: 100%;">
+        </ion-col>
+    </ion-row>
 </ion-content>

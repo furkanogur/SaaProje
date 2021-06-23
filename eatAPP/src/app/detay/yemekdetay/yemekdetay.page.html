@@ -13,17 +13,33 @@
                         <ion-avatar class="avatar-sm">
                             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="">
                         </ion-avatar>
+
                     </ion-col>
                     <ion-col>
                         <strong [routerLink]="[ 'kisidetay/' ,yemek?.YemekUyeId ]">{{uye?.uyeAdSoyad}}</strong>
+                        <ion-icon name="person-add-sharp" style="float: right;" (click)="takipet(yemek.YemekUyeId)" *ngIf="durum==true"></ion-icon>
                     </ion-col>
+                    <ion-col size="auto" *ngIf="yemek.YemekUyeId==duzuyeid">
+                        <ion-button (click)="showPopover($event,yemek?.yemekId)" fill="clear" color="warning">
+                            <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+
+
 
 
 
                 </ion-row>
             </div>
+            <p>Kullanılan Malzemeler</p>
+            <ion-row>
+
+                <ion-col size="4" *ngFor="let item of yemekmalzeme" style="font-size: 80%;">
+                    * {{item?.YemekMalzeme.Malzemeler1}}
+                </ion-col>
+            </ion-row>
             <div class="post-media">
-                <img [src]="servis.siteUrl+'/Dosyalar/'+ yemek?.yemekFoto">
+                <img [src]="servis.siteUrl+'/Dosyalar/'+ yemek.yemekFoto">
             </div>
             <div class="post-actions">
                 <ion-row>
@@ -40,10 +56,13 @@
             </div>
             <div>
                 <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{yemek?.YemekAdi}}</p>
-                <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{yemek?.yemekId}}</p>
-                <p style="margin-left: 5%;"><b>Yemeğin Tarifi :</b>{{yemek?.Tarif}}</p>
+                <p style="margin-left: 5%;"><b>Yemeğin Tarifi : </b>{{yemek.Tarif}}</p>
             </div>
         </div>
     </div>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
 
 </ion-content>

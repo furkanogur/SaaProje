@@ -1,3 +1,4 @@
+import { AdminpanelPageModule } from './../Admin/adminpanel/adminpanel.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/AuthGuard';
@@ -11,7 +12,7 @@ const routes: Routes = [
       {
         path: 'tab1',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule),
-        
+
       },
       {
         path: 'tab2',
@@ -23,16 +24,20 @@ const routes: Routes = [
       },
       {
         path: 'tab4',
-        loadChildren: () => import('../tab4/tab4.module').then( m => m.Tab4PageModule),
-        canActivate: [AuthGuard],
-    data: {
-      yetkiler: ["Admin"],
-      gerigit: "/"
-    }
+        loadChildren: () => import('../tab4/tab4.module').then(m => m.Tab4PageModule)
       },
       {
         path: 'login',
         loadChildren: () => import('../login/login.module').then(m => m.LoginPageModule)
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('../Admin/adminpanel/adminpanel.module').then(m => m.AdminpanelPageModule),
+        canActivate: [AuthGuard],
+        data: {
+          yetkiler: ["Admin"],
+          gerigit: "/"
+        }
       },
       {
         path: 'kisidetay',
@@ -59,4 +64,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

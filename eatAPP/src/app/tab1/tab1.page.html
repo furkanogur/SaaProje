@@ -12,6 +12,11 @@
             <ion-title size="large">Anasayfa</ion-title>
         </ion-toolbar>
     </ion-header>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <div class="post-list">
         <div class="post-item" *ngFor="let ye of yemek" style="margin-top: 15%;">
             <div class="post-header">
@@ -34,8 +39,8 @@
 
 
 
-                    <ion-col size="auto">
-                        <ion-button (click)="showPopover($event,ye.yemekId)" fill="clear" color="warning">
+                    <ion-col size="auto" *ngIf="ye.YemekUyeId==duzuyeid">
+                        <ion-button [routerLink]="['yemek-duzenle/',ye.yemekId]" fill="clear" color="warning">
                             <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
                         </ion-button>
                     </ion-col>
@@ -71,8 +76,7 @@
             </div>
             <div [routerLink]="['yemekdetay/',ye.yemekId,ye.YemekUyeId]">
                 <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.YemekAdi}}</p>
-                <p style="margin-left: 5%;"><b>Yemeğin Adı :</b>{{ye.yemekId}}</p>
-                <p style="margin-left: 5%;"><b>Yemeğin Tarifi :</b>{{ye.Tarif}}</p>
+                <p style="margin-left: 5%;"><b>Yemeğin Tarifi :</b>{{ye.Tarif | slice :0:20 }}. <a> Detaylar...</a></p>
             </div>
         </div>
     </div>
