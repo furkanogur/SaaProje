@@ -48,7 +48,6 @@ export class YemekdetayPage implements OnInit {
   TakiptenCık() {
     this.servis.TakipciSil(this.duzuyeid).subscribe((s: Sonuc) => {
 
-      console.log(s);
     })
   }
 
@@ -57,8 +56,6 @@ export class YemekdetayPage implements OnInit {
   YemekMalzemeListele() {
     this.servis.YemekMalzemeyemekById(this.yemekId).subscribe((d: YemekMalzeme[]) => {
       this.yemekmalzeme = d;
-      console.log(this.yemekmalzeme);
-
     })
   }
 
@@ -76,10 +73,7 @@ export class YemekdetayPage implements OnInit {
     this.servis.TakipciEkle(takip).subscribe((s: Sonuc) => {
       if (s.islem==false) {
         this.TakiptenCık()
-        console.log(s )
-      }else{
-        console.log(s);
-      };
+      }
     })
   }
 
@@ -91,12 +85,10 @@ export class YemekdetayPage implements OnInit {
   }
 
   FavoriEkle(yemekId: string) {
-    console.log(yemekId)
     var favori: Favori = new Favori();
     favori.favoriYemekId = yemekId
     favori.favoriUyeId = localStorage.getItem("uyeId");
     this.servis.FavoriEkle(favori).subscribe((s: Sonuc) => {
-      console.log(s);
     })
   }
 
@@ -109,11 +101,9 @@ export class YemekdetayPage implements OnInit {
       translucent: true,
       componentProps: { name: 'world', secyemekId: yemekId }
     });
-    console.log(yemekId);
     popover.onDidDismiss().then(popoverEvent => {
       this.popoverData = popoverEvent.data.popoverData;
     });
     await popover.present();
-    console.log(this.popoverData);
   }
 }

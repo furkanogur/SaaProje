@@ -19,7 +19,6 @@ export class AppComponent {
     this.route.params.subscribe(p=>{
       if(p){
         this.yemekid = p.yemekid
-        console.log(this.yemekid)
       }
     })
   }

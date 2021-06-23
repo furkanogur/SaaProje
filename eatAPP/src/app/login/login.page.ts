@@ -58,9 +58,7 @@ sayi=1;
     uye.uyeSifre = frmGroup.uyeSifre
     uye.uyeTelefon = frmGroup.uyeTelefon
     if (uye) {
-      this.servis.UyeEkle(uye).subscribe((s: Sonuc) => {
-        console.log(s);
-        
+      this.servis.UyeEkle(uye).subscribe((s: Sonuc) => {        
       });
     }
   } }

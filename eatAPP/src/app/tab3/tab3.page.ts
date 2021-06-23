@@ -58,7 +58,6 @@ uyetel:string;
 uyeById(){
   this.servis.UyeById(this.uyeId).subscribe((d:Uye)=>{
     this.uye = d;
-    console.log(d)
   })
   
 }
@@ -100,7 +99,6 @@ uyeFoto: UyeFoto = new UyeFoto();
 YemekListe(){
   this.servis.YemekByUyeId(this.uyeId).subscribe((d:Yemekler[])=>{
     this.yemek=d;
-    console.log(this.yemek);
   })
 }
 
@@ -117,7 +115,6 @@ SifreDuzenle(frmGroup) {
   uye.uyeId = this.uyeId
   this.servis.UyeDuzenle(uye).subscribe((s: Sonuc) => {
     if (s.islem) {
-      console.log(s)
       this.uyeById();
            }
   })
@@ -134,7 +131,6 @@ AdSoyadDuzenle(frmGroup) {
   uye.uyeId = this.uyeId
   this.servis.UyeDuzenle(uye).subscribe((s: Sonuc) => {
     if (s.islem) {
-      console.log(s)
       this.uyeById();
            }
   })

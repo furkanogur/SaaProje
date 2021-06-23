@@ -57,14 +57,11 @@ yeniYemek:Yemekler;
     kayit.YemekAdi = frmGroup.YemekAdi
     kayit.Tarif = frmGroup.Tarif
     kayit.yemekId =this.yemekId
-    console.log(kayit)  
     this.servis.YemekDuzenle(kayit).subscribe((s: Sonuc) => {
       if (s.islem) {
-        console.log(s)
         location.href = ("/");
       }
       else{
-        console.log(s.mesaj)
       }
     })
   }

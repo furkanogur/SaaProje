@@ -45,17 +45,14 @@ export class Tab1Page implements OnInit{
   YemekListe() {
     this.service.YemekListele().subscribe((d: Yemekler[]) => {
       this.yemek = d;
-      console.log(d)
     })
   }
 
   FavoriEkle(yemekId: string) {
-    console.log(yemekId)
     var favori: Favori = new Favori();
     favori.favoriYemekId = yemekId
     favori.favoriUyeId = localStorage.getItem("uyeId");
     this.service.FavoriEkle(favori).subscribe((s: Sonuc) => {
-      console.log(s);
     })
   }
 
@@ -66,21 +63,16 @@ export class Tab1Page implements OnInit{
       translucent: true,
       componentProps: { name: 'world',secyemekId: yemekId}
     });
-    console.log(yemekId);
     popover.onDidDismiss().then(popoverEvent => {
       this.popoverData = popoverEvent.data.popoverData;
     });
     await popover.present();
-    console.log(this.popoverData);
   }
 
 
   doRefresh(event) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
+    setTimeout(() => {   
+         event.target.complete();
     }, 2000);
   }
 }

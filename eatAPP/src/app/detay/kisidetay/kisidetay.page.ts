@@ -29,15 +29,12 @@ export class KisidetayPage implements OnInit {
   }
   UyeGetir() {
     this.servis.UyeById(this.uyeid).subscribe((d: Uye) => {
-      this.uye = d;
-      console.log(this.uye);
-    })
+      this.uye = d;    })
   }
 
   YemekBilgi(){
     this.servis.YemekByUyeId(this.uyeid).subscribe((d:Yemekler[])=>{
       this.yemekler =d;
-      console.log(d);
     })
   }
 

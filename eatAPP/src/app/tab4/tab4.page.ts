@@ -30,14 +30,10 @@ export class Tab4Page implements OnInit {
   YemekListe(){
     this.servis.YemekListele().subscribe((d:Yemekler[])=>{
       this.yemek=d;
-      console.log(this.yemek);
     })
   }
 
   searchAction(texto: any) {
-    
     let val = texto.target.value;
-    console.log(this.queryText)
-    //implement search
   }
 }
