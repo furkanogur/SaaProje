@@ -164,7 +164,7 @@
                     <ion-row class="ion-justify-content-center ion-align-items-center">
                         <ion-col size="auto">
                             <ion-avatar class="avatar-sm" [routerLink]="['kisidetay/',ye.YemekUyeId]">
-                                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" alt="" [routerLink]="['/kisidetay/',ye.YemekUyeId]">
+                                <img [src]="service.siteUrl+'/Dosyalar/'+ ye.UyeBilgisi.uyeFoto" alt="" [routerLink]="['/kisidetay/',ye.YemekUyeId]">
                             </ion-avatar>
                         </ion-col>
                         <ion-col>
